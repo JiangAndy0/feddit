@@ -1,4 +1,4 @@
-{
+export const mockFeed = {
    "kind":"Listing",
    "data":{
       "after":"t3_vzthf1",
