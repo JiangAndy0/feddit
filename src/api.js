@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { utcToString } from './helperFunctions.js';
 
 //takes a feed json response from Reddit & returns an array of post objects with only the necessary info
 const createPostsArray = feedJson => {
@@ -23,7 +24,7 @@ const createPostsArray = feedJson => {
                 author: post.data.author,
                 numComments: post.data.num_comments,
                 score: post.data.score,
-                createdUTC: post.data.created_utc,
+                timeAgo: utcToString(post.data.created_utc), //convert created_utc to readable human form
                 imgURL: post.data.url,
                 imgPreviewURL: previewURL,
                 url: `https://reddit.com${post.data.permalink}`
@@ -45,7 +46,7 @@ const createRepliesArray = async(postJson) => {
                 author: reply.data.author,
                 body: reply.data.body,
                 score: reply.data.score,
-                createdUTC: reply.data.created_utc,
+                timeAgo: utcToString(reply.data.created_utc), //convert created_utc to readable human form
                 //recursively get replies for each reply if they exist
                 replies: reply.data.replies ? getSimpleReplies(reply.data.replies.data.children) : ""
             }
@@ -117,8 +118,8 @@ const dinnerFeed = createPostsArray(dinnerJSON);
 //console.log(dinnerFeed);
 const dessertJSON = await getJsonFor('https://reddit.com/r/DessertPorn/');
 const dessertFeed = createPostsArray(dessertJSON);
-//console.log(dessertFeed[3].jsonURL);
-const dessertPostJSON = await getJsonFor(dessertFeed[0].url);
+//console.log(dessertFeed);
+const dessertPostJSON = await getJsonFor(dessertFeed[2].url);
 const dessertPostReplies = await createRepliesArray(dessertPostJSON);
 console.log( dessertPostReplies);
 
