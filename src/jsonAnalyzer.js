@@ -42,7 +42,6 @@ const createPostsArray = feedJson => {
 
 //takes an author's name and returns a link to their profile picture
 const getProfilePicLink = async(name) => {
-
     const removeSearchParameters = url => {
         if (url.includes('?')) {
             const indexQuestion = url.indexOf('?');
@@ -57,18 +56,20 @@ const getProfilePicLink = async(name) => {
     try {
         const response = await fetch(aboutURL);
         const userJSON = await response.json();
-        console.log(userJSON);
         return removeSearchParameters(userJSON.data.icon_img); //remove search parameters to access image
     } catch (e) {
         console.log(e);
     }
 
 }
+
+
 //takes a post json response from Reddit & returns an array of reply objects with only necessary info
-const createRepliesArray = postJson => {
+const createRepliesArray = async(postJson) => {
 
     //takes reddit's array of replies for this post and returns an array of simplified reply objects
     const getSimpleReplies = repliesArray => {
+
         return repliesArray.map( reply => {
             return {
                 author: reply.data.author,
@@ -81,10 +82,24 @@ const createRepliesArray = postJson => {
         })
     } 
 
-    return getSimpleReplies(postJson[1].data.children);
+    //takes an array of replies and adds author profile pictures to each reply
+    const addProfilePics = async( repliesArray ) => {
+
+        for (const reply of repliesArray) {
+            if(reply.replies){
+                await addProfilePics(reply.replies);
+            }
+            const authorImg = await getProfilePicLink(reply.author);
+            reply.authorImg = authorImg;
+        }
+
+    }
+    //gets the initial replies array, adds profile pic urls to each of the replies, then returns the array
+    const repliesArray =  getSimpleReplies(postJson[1].data.children); 
+    await addProfilePics(repliesArray);
+    return repliesArray;
+    
 }
-
-
 
 //fetches json information for /r/dinner or /r/dessertPorn or a specific URL
 const getJsonFor = async ( input ) => {
@@ -113,8 +128,7 @@ const dinnerFeed = createPostsArray(dinnerJSON);
 const dessertJSON = await getJsonFor('dessert');
 const dessertFeed = createPostsArray(dessertJSON);
 //console.log(dessertFeed[3].jsonURL);
-const dessertPostJSON = await getJsonFor(dessertFeed[3].jsonURL);
-//console.log(createRepliesArray(dessertPostJSON));
+const dessertPostJSON = await getJsonFor(dessertFeed[1].jsonURL);
+const dessertPostReplies = await createRepliesArray(dessertPostJSON);
+console.log( dessertPostReplies);
 
-const profilePicLink = await getProfilePicLink('Dense_Calligrapher36');
-console.log(profilePicLink);
