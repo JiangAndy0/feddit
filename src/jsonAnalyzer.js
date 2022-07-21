@@ -1,21 +1,15 @@
 import fetch from 'node-fetch';
-import { mockPost } from './mocks/mockRedditPost.js';
-
-//takes a url and returns a new url without 'amp;' in it
-const removeAmp = url => {
-    return url.replaceAll('amp;', '');
-}
-
-//takes a post's permalink and returns a link to access the json of that post
-const getjsonURL = permalink => { 
-    //remove the forward slash at the end before adding in other parts of the link
-    return `https://reddit.com${permalink.slice(0, permalink.length - 1)}.json`;
-}
 
 //takes a feed json response from Reddit & returns an array of post objects with only the necessary info
 const createPostsArray = feedJson => {
+
+    //takes a url and returns a new url without 'amp;' in it
+    const removeAmp = url => {
+        return url.replaceAll('amp;', '');
+    }
+
     const posts = feedJson.data.children
-        .filter( post => { //only analyze posts that have images
+        .filter( post => { //only process posts that have images
             if (post.data.preview) return true;
             return false;
         }) 
@@ -32,42 +26,18 @@ const createPostsArray = feedJson => {
                 createdUTC: post.data.created_utc,
                 imgURL: post.data.url,
                 imgPreviewURL: previewURL,
-                url: `https://reddit.com${post.data.permalink}`,
-                jsonURL: getjsonURL(post.data.permalink)
+                url: `https://reddit.com${post.data.permalink}`
             }
         });
 
     return posts;
 }
 
-//takes an author's name and returns a link to their profile picture
-const getProfilePicLink = async(name) => {
-    const removeSearchParameters = url => {
-        if (url.includes('?')) {
-            const indexQuestion = url.indexOf('?');
-            return url.slice(0, indexQuestion);
-        } else {
-            return url;
-        }
-    }
-
-    const aboutURL = `https://www.reddit.com/user/${name}/about.json`;
-    //get json for user's about page
-    try {
-        const response = await fetch(aboutURL);
-        const userJSON = await response.json();
-        return removeSearchParameters(userJSON.data.icon_img); //remove search parameters to access image
-    } catch (e) {
-        console.log(e);
-    }
-
-}
-
 
 //takes a post json response from Reddit & returns an array of reply objects with only necessary info
 const createRepliesArray = async(postJson) => {
 
-    //takes reddit's array of replies for this post and returns an array of simplified reply objects
+    //takes an array of replies that was fetched and returns an array of simplified replies
     const getSimpleReplies = repliesArray => {
 
         return repliesArray.map( reply => {
@@ -82,6 +52,30 @@ const createRepliesArray = async(postJson) => {
         })
     } 
 
+    //takes an author's name and returns a link to their profile picture
+    const getProfilePicLink = async(name) => {
+        
+        const removeSearchParameters = url => {
+            if (url.includes('?')) {
+                const indexQuestion = url.indexOf('?');
+                return url.slice(0, indexQuestion);
+            } else {
+                return url;
+            }
+        }
+
+        const aboutURL = `https://www.reddit.com/user/${name}/about.json`;
+        //get json for user's about page
+        try {
+            const response = await fetch(aboutURL);
+            const userJSON = await response.json();
+            return removeSearchParameters(userJSON.data.icon_img); //remove search parameters to access image
+        } catch (e) {
+            console.log(e);
+        }
+
+    }
+
     //takes an array of replies and adds author profile pictures to each reply
     const addProfilePics = async( repliesArray ) => {
 
@@ -94,6 +88,7 @@ const createRepliesArray = async(postJson) => {
         }
 
     }
+
     //gets the initial replies array, adds profile pic urls to each of the replies, then returns the array
     const repliesArray =  getSimpleReplies(postJson[1].data.children); 
     await addProfilePics(repliesArray);
@@ -101,16 +96,10 @@ const createRepliesArray = async(postJson) => {
     
 }
 
-//fetches json information for /r/dinner or /r/dessertPorn or a specific URL
-const getJsonFor = async ( input ) => {
-    let jsonURL;
-    if (input === 'dinner'){
-        jsonURL = 'https://www.reddit.com/r/tonightsdinner.json';
-    } else if (input === 'dessert') {
-        jsonURL = 'https://www.reddit.com/r/DessertPorn.json';
-    } else {
-        jsonURL = input;
-    }
+//fetches json information from a reddit url
+const getJsonFor = async ( url ) => {
+    //remove the forward slash at the end, then add .json
+    const jsonURL = `${url.slice(0, url.length - 1)}.json`;
 
     try {
         const response = await fetch(jsonURL);
@@ -122,13 +111,14 @@ const getJsonFor = async ( input ) => {
 
 }
 
-const dinnerJSON = await getJsonFor('dinner');
+
+const dinnerJSON = await getJsonFor('https://reddit.com/r/tonightsdinner/');
 const dinnerFeed = createPostsArray(dinnerJSON);
 //console.log(dinnerFeed);
-const dessertJSON = await getJsonFor('dessert');
+const dessertJSON = await getJsonFor('https://reddit.com/r/DessertPorn/');
 const dessertFeed = createPostsArray(dessertJSON);
 //console.log(dessertFeed[3].jsonURL);
-const dessertPostJSON = await getJsonFor(dessertFeed[1].jsonURL);
+const dessertPostJSON = await getJsonFor(dessertFeed[0].url);
 const dessertPostReplies = await createRepliesArray(dessertPostJSON);
 console.log( dessertPostReplies);
 
