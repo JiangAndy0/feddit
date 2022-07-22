@@ -33,3 +33,32 @@ export const utcToString = utcCreated => {
     }
 }
 
+//takes a number and returns a 3 digit string version (ex 62,378 => 62.3k)
+export const formatNum = num => {
+    const thousand = 1000;
+    const hThousand = thousand * 100;
+    const million = hThousand * 10;
+    const hMillion = million * 100;
+    const billion = hMillion * 10;
+
+    if (num < thousand) {
+        return num.toString();
+    } else if ( num < hThousand ) {
+        const newNum = Math.floor( num / 100) / 10; //cut off after hundredth place
+        return newNum + 'k';
+    } else if ( num < million ) {
+        const newNum = Math.floor( num / thousand ); //cut off after thousandth place
+        return newNum + 'k';
+    } else if ( num < hMillion) {
+        const newNum = Math.floor( num / hThousand ) / 10; //cut off after hundred-thousandth place
+        return newNum + 'm';
+    } else if ( num < billion ) {
+        const newNum = Math.floor( num / million ); //cut off after millionth place
+        return newNum + 'm';
+    } else {
+        return '1b+';
+    }
+}
+
+
+
