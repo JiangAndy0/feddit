@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { utcToString } from './helperFunctions.js';
 
 //takes a feed json response from Reddit & returns an array of post objects with only the necessary info
@@ -112,14 +111,16 @@ const getJsonFor = async ( url ) => {
 
 }
 
+//returns an array of posts from the Reddit API based on category
+export const getPostsForFeed = async( category ) => {
+    let url;
+    if (category === 'dinner'){
+        url = 'https://api.reddit.com/r/tonightsdinner/';
+    } else if (category === 'dessert'){
+        url = 'https://api.reddit.com/r/DessertPorn/';
+    }
+    const feedJSON = await getJsonFor(url);
+    return createPostsArray(feedJSON);
+}
 
-const dinnerJSON = await getJsonFor('https://reddit.com/r/tonightsdinner/');
-const dinnerFeed = createPostsArray(dinnerJSON);
-//console.log(dinnerFeed);
-const dessertJSON = await getJsonFor('https://reddit.com/r/DessertPorn/');
-const dessertFeed = createPostsArray(dessertJSON);
-//console.log(dessertFeed);
-const dessertPostJSON = await getJsonFor(dessertFeed[2].url);
-const dessertPostReplies = await createRepliesArray(dessertPostJSON);
-console.log( dessertPostReplies);
 
