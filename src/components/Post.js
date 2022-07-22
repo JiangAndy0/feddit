@@ -1,12 +1,18 @@
+import { formatNum } from "../helperFunctions.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage } from "@fortawesome/free-regular-svg-icons";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+
 export const Post = ({ post }) => {
     return (
         <div>
-            <h2>Title: {post.title}</h2>
-            <p>Author: {post.author}</p>
-            <p>Comments: {post.numComments}</p>
-            <p>Score: {post.score}</p>
-            <p>Posted: {post.timeAgo} ago</p>
+            <p>{post.timeAgo} ago by {post.author}</p>
+            <h1>{post.title}</h1>
             <img src={post.imgPreviewURL} />
+            <span>
+                <FontAwesomeIcon icon={faArrowUp}/> {formatNum(post.score)} <FontAwesomeIcon icon={faArrowDown}/>
+            </span>
+            <button><FontAwesomeIcon icon={faMessage} /> {post.numComments}</button>
             <a href={post.url}>See on Reddit</a>
         </div>
     );
