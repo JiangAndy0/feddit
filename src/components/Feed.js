@@ -1,11 +1,14 @@
 import { Post } from "./Post.js";
 
-export const Feed = ({ posts }) => {
+export const Feed = ({ posts, query }) => {
     return (
         <div>
-            {posts.map( post => {
+            {posts
+                .filter( post => post.title.toLowerCase().includes(query.toLowerCase()))
+                .map( post => {
                 return <Post post={post} key={post.url}/>
-            })}
+                })
+            }
         </div>
     );
 }

@@ -5,7 +5,7 @@ import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export const Post = ({ post }) => {
     return (
-        <div>
+        <div className="post">
             <p>{post.timeAgo} ago by {post.author}</p>
             <h1>{post.title}</h1>
             <img src={post.imgPreviewURL} />
