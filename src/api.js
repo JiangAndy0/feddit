@@ -26,7 +26,8 @@ const createPostsArray = feedJson => {
                 timeAgo: utcToString(post.data.created_utc), //convert created_utc to readable human form
                 imgURL: post.data.url,
                 imgPreviewURL: previewURL,
-                url: `https://reddit.com${post.data.permalink}`
+                url: `https://reddit.com${post.data.permalink}`,
+                apiUrl: `https://api.reddit.com${post.data.permalink}`
             }
         });
 
@@ -64,7 +65,7 @@ const createRepliesArray = async(postJson) => {
             }
         }
 
-        const aboutURL = `https://www.reddit.com/user/${name}/about.json`;
+        const aboutURL = `https://api.reddit.com/user/${name}/about.json`;
         //get json for user's about page
         try {
             const response = await fetch(aboutURL);
@@ -96,10 +97,10 @@ const createRepliesArray = async(postJson) => {
     
 }
 
-//fetches json information from a reddit url
-const getJsonFor = async ( url ) => {
+//fetches json information from a reddit api url
+const getJsonFor = async ( apiUrl ) => {
     //remove the forward slash at the end, then add .json
-    const jsonURL = `${url.slice(0, url.length - 1)}.json`;
+    const jsonURL = `${apiUrl.slice(0, apiUrl.length - 1)}.json`;
 
     try {
         const response = await fetch(jsonURL);
@@ -119,8 +120,15 @@ export const getPostsForFeed = async( category ) => {
     } else if (category === 'dessert'){
         url = 'https://api.reddit.com/r/DessertPorn/';
     }
-    const feedJSON = await getJsonFor(url);
-    return createPostsArray(feedJSON);
+    const feedJson = await getJsonFor(url);
+    return createPostsArray(feedJson);
+}
+
+//returns an array of replies from the Reddit API based on the post object passed
+export const getRepliesForPost = async( post ) => {
+    const postJson = await getJsonFor(post.apiUrl); //get the json for the post
+    const replies = await createRepliesArray(postJson);
+    return replies;
 }
 
 

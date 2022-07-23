@@ -1,6 +1,8 @@
-import {Feed} from './components/Feed.js'
 import { useEffect, useState } from 'react';
+import {Feed} from './components/Feed.js'
+import { Replies } from './components/Replies.js';
 import { getPostsForFeed } from './api.js';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurger, faIceCream } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,20 +10,25 @@ function App() {
   const [feed, setFeed] = useState('dinner');
   const [posts, setPosts] = useState([]);
   const [query, setQuery] = useState('');
+
+  const [activePost, setActivePost] = useState({});
+  const [showingReplies, setShowingReplies] = useState(false);
   
   //fetch new posts from Reddit when feed changes
   useEffect(() => { 
     async function fetchData() {
-      const newPosts = await getPostsForFeed(feed);
-      setPosts(newPosts);
+      const posts = await getPostsForFeed(feed);
+      setPosts(posts);
     }
     fetchData();
   }, [feed]);
+
 
   //handle when the search query changes
   const handleChange = ( e ) => {
     setQuery(e.target.value);
   }
+
 
   return (
     <div className="App">
@@ -40,7 +47,18 @@ function App() {
           onChange={handleChange}
         />
       </nav>
-      <Feed posts={posts} query={query}/>
+      {showingReplies && 
+        <Replies 
+          activePost={activePost}
+          setShowingReplies={setShowingReplies}
+        />
+      }
+      <Feed 
+        posts={posts} 
+        query={query}
+        setActivePost={setActivePost}
+        setShowingReplies={setShowingReplies}
+      />
     </div>
   );
 }
