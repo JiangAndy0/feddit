@@ -6,6 +6,7 @@ import { getPostsForFeed } from './api.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurger, faIceCream } from "@fortawesome/free-solid-svg-icons";
 import { faFaceGrinTongue } from '@fortawesome/free-regular-svg-icons';
+import { Picture } from './components/Picture.js';
 
 function App() {
   const [feed, setFeed] = useState('dinner');
@@ -14,6 +15,7 @@ function App() {
 
   const [activePost, setActivePost] = useState({});
   const [showingReplies, setShowingReplies] = useState(false);
+  const [showingImage, setShowingImage] = useState(false);
   
   //fetch new posts from Reddit when feed changes
   useEffect(() => { 
@@ -54,11 +56,18 @@ function App() {
           setShowingReplies={setShowingReplies}
         />
       }
+      {showingImage &&
+        <Picture
+          activePost={activePost}
+          setShowingImage={setShowingImage}
+        />
+      }
       <Feed 
         posts={posts} 
         query={query}
         setActivePost={setActivePost}
         setShowingReplies={setShowingReplies}
+        setShowingImage={setShowingImage}
       />
     </div>
   );
