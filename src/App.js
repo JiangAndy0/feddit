@@ -5,6 +5,7 @@ import { getPostsForFeed } from './api.js';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBurger, faIceCream } from "@fortawesome/free-solid-svg-icons";
+import { faFaceGrinTongue } from '@fortawesome/free-regular-svg-icons';
 
 function App() {
   const [feed, setFeed] = useState('dinner');
@@ -33,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <span>FEDDIT</span>
+        <h1><FontAwesomeIcon icon={faFaceGrinTongue}/>FEDDIT</h1>
         <button onClick={ () => {setFeed('dinner')}} >
           <FontAwesomeIcon icon={faBurger} />
         </button>
