@@ -1,6 +1,83 @@
 html * {
     font-family: 'Open Sans', sans-serif;
 }
+
+body {
+    margin: 0;
+}
+
 h1, h2 {
     font-family: 'Mochiy Pop One', sans-serif;
 }
+
+h1 {
+    font-size: 2rem;
+}
+
+nav {
+    background-color: lemonchiffon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+}
+
+#nav-elements {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 70rem;
+    width: 100%;
+    height: 60%;
+    padding: 0 2rem;
+}
+
+#nav-elements h1, #input-container {
+    width: 15rem; /*to make sure buttons are centered*/
+}
+
+#feed-buttons {
+    height: 100%;
+    width: 10rem;
+    border-radius: 2rem;
+    border: 3px solid black;
+    overflow: hidden;
+
+}
+#feed-buttons button {
+    height: 100%;
+    width: 50%;
+    border-radius: 2rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+#input-container {
+    display: flex;
+    height: 100%;
+}
+
+#input-container .icon {
+    position: absolute;
+    align-self: center;
+    padding-left: 1rem;
+}
+
+#input-container input {
+    width: 100%;
+    height: 100%;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    border: none;
+    border-radius: 2rem;
+}
+
+#input-container input:focus {
+    outline: 3px solid black;
+}
+
+
+

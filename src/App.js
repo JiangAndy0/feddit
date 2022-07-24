@@ -4,7 +4,7 @@ import { Replies } from './components/Replies.js';
 import { getPostsForFeed } from './api.js';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBurger, faIceCream } from "@fortawesome/free-solid-svg-icons";
+import { faBurger, faIceCream, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faFaceGrinTongue } from '@fortawesome/free-regular-svg-icons';
 import { Picture } from './components/Picture.js';
 
@@ -36,19 +36,26 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <h1><FontAwesomeIcon icon={faFaceGrinTongue}/>FEDDIT</h1>
-        <button onClick={ () => {setFeed('dinner')}} >
-          <FontAwesomeIcon icon={faBurger} />
-        </button>
-        <button onClick={ () => {setFeed('dessert')}} >
-          <FontAwesomeIcon icon={faIceCream} />
-        </button>
-        <input 
-          type='search' 
-          placeholder={`Search for a ${feed}`}
-          value={query}
-          onChange={handleChange}
-        />
+        <div id="nav-elements">
+          <h1><FontAwesomeIcon icon={faFaceGrinTongue}/>FEDDIT</h1>
+          <div id="feed-buttons">
+            <button onClick={ () => {setFeed('dinner')}} >
+              <FontAwesomeIcon icon={faBurger} />
+            </button>
+            <button onClick={ () => {setFeed('dessert')}} >
+              <FontAwesomeIcon icon={faIceCream} />
+            </button>
+          </div>
+          <div id='input-container'>
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/>
+            <input 
+              type='search' 
+              placeholder={`Search for a ${feed}`}
+              value={query}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
       </nav>
       {showingReplies && 
         <Replies 
