@@ -18,6 +18,10 @@ h2 {
     font-size: 1.25rem;
 }
 
+.stat {
+    font-size: 16px;
+}
+
 /*---------------------Navbar-------------------------*/
 
 nav {
@@ -98,11 +102,9 @@ main {
     width: 80%;
     max-width: 50rem;
     margin: 0 auto;
+    padding-bottom: 1rem;
 }
 
-.stat {
-    font-size: 14px;
-}
 
 .post {
     padding: 1rem;
@@ -139,6 +141,31 @@ main {
 .post .img-container.wide img {
     width: 100%;
 }
+
+.post .bottom-bar {
+    display: flex;
+    align-items: center;
+}
+
+.post button {
+    margin-left: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0.5rem 1rem
+}
+
+.post button:hover {
+    background-color: lightgray;
+}
+.post a {
+    flex-grow: 1;
+    text-align: right;
+}
+
+/*--------------------------Replies-------------------------------*/
+
+
 
 
 

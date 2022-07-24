@@ -39,11 +39,15 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
                     onLoad={handleImageLoad}
                 />
             </div>
-            <span className='stat'>
-                <FontAwesomeIcon icon={faArrowUp}/> {formatNum(post.score)} <FontAwesomeIcon icon={faArrowDown}/>
-            </span>
-            <button onClick={handleCommentClick} className='stat'><FontAwesomeIcon icon={faMessage} /> {post.numComments}</button>
-            <a href={post.url}>See on Reddit</a>
+            <div className='bottom-bar'>
+                <span className='stat'>
+                    <FontAwesomeIcon icon={faArrowUp}/> {formatNum(post.score)} <FontAwesomeIcon icon={faArrowDown}/>
+                </span>
+                <button onClick={handleCommentClick} className='stat'>
+                    <FontAwesomeIcon icon={faMessage} /> {post.numComments}
+                </button>
+                <a href={post.url}>See on Reddit</a>
+            </div>
         </div>
     );
 }
