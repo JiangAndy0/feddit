@@ -19,11 +19,13 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
         <div className="post">
             <p>{post.timeAgo} ago by {post.author}</p>
             <h2>{post.title}</h2>
-            <img src={post.imgPreviewURL} onClick={handleImageClick}/>
-            <span>
+            <div className='img-container'>
+                <img src={post.imgPreviewURL} onClick={handleImageClick}/>
+            </div>
+            <span className='stat'>
                 <FontAwesomeIcon icon={faArrowUp}/> {formatNum(post.score)} <FontAwesomeIcon icon={faArrowDown}/>
             </span>
-            <button onClick={handleCommentClick}><FontAwesomeIcon icon={faMessage} /> {post.numComments}</button>
+            <button onClick={handleCommentClick} className='stat'><FontAwesomeIcon icon={faMessage} /> {post.numComments}</button>
             <a href={post.url}>See on Reddit</a>
         </div>
     );

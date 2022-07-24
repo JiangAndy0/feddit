@@ -2,7 +2,7 @@ import { Post } from "./Post.js";
 
 export const Feed = ({ posts, query, setActivePost, setShowingReplies, setShowingImage }) => {
     return (
-        <div>
+        <main>
             {posts
                 .filter( post => post.title.toLowerCase().includes(query.toLowerCase()))
                 .map( post => {
@@ -15,6 +15,6 @@ export const Feed = ({ posts, query, setActivePost, setShowingReplies, setShowin
                             />
                 })
             }
-        </div>
+        </main>
     );
 }
