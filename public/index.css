@@ -122,13 +122,25 @@ main {
 
 .post .img-container {
     width: 100%;
-    height: 50rem;
     overflow: hidden;
 }
 
-.post .img-container img {
-    max-height: 100%;
+.post .img-container.tall {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
 }
+
+.post .img-container.tall img {
+    height: 100%;
+}
+
+.post .img-container.wide img {
+    width: 100%;
+}
+
+
 
 
 
