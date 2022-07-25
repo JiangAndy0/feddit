@@ -30,7 +30,7 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
 
     return (
         <div className="post">
-            <p>{post.timeAgo} ago by {post.author}</p>
+            <p className='signature'>{post.timeAgo} ago by {post.author}</p>
             <h2>{post.title}</h2>
             <div className={hasTallImage ? 'img-container tall' : 'img-container wide'}>
                 <img 

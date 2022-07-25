@@ -6,7 +6,7 @@ body {
     margin: 0;
 }
 
-h1, h2, .stat {
+h1, h2, .stat, h3 {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
@@ -18,8 +18,17 @@ h2 {
     font-size: 1.25rem;
 }
 
+h3 {
+    margin: 0;
+}
+
 .stat {
     font-size: 16px;
+}
+
+.signature {
+    margin: 0;
+    font-size: 14px;
 }
 
 /*---------------------Navbar-------------------------*/
@@ -113,11 +122,6 @@ main {
     border-radius: 0.5rem;
 }
 
-.post p {
-    margin: 0;
-    font-size: 14px;
-}
-
 .post h2 {
     margin-top: 0.2rem;
 }
@@ -164,8 +168,62 @@ main {
 }
 
 /*--------------------------Replies-------------------------------*/
+#replies {
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    height: 94vh;
+    width: 94%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
+#replies .header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: white;
+}
 
+#replies h3 .icon {
+    padding-right: 0.5rem;
+}
+
+#replies button {
+    border: none;
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+    background-color: transparent;
+}
+
+#replies button:hover {
+    background-color: lightgray;
+}
+
+#comments-container {
+    flex-grow: 1;
+    overflow: scroll;
+    margin: 0 2rem;
+}
+
+.reply .img-container {
+    aspect-ratio: 1 / 1;
+    width: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.reply .img-container img {
+    width: 100%;
+}
 
 
 
