@@ -63,6 +63,9 @@ function App() {
           setShowingReplies={setShowingReplies}
         />
       }
+      {(showingReplies || showingImage) && 
+        <div id='dark-overlay'></div>
+      }
       {showingImage &&
         <Picture
           activePost={activePost}

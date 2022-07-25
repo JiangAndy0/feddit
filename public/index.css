@@ -31,6 +31,27 @@ h3 {
     font-size: 14px;
 }
 
+.img-container {
+    display: flex;
+    overflow: hidden;
+}
+
+.img-container.tall {
+    justify-content: center;
+}
+
+.img-container.wide {
+    align-items: center;
+}
+
+.img-container.tall img {
+    height: 100%;
+}
+
+.img-container.wide img {
+    width: 100%;
+}
+
 /*---------------------Navbar-------------------------*/
 
 nav {
@@ -103,7 +124,7 @@ nav {
     outline: 3px solid black;
 }
 
-/*--------------------Main----------------------*/
+/*--------------------Feed----------------------*/
 
 main {
     position: relative;
@@ -128,22 +149,11 @@ main {
 
 .post .img-container {
     width: 100%;
-    overflow: hidden;
 }
 
 .post .img-container.tall {
     aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
     background-color: lightgray;
-}
-
-.post .img-container.tall img {
-    height: 100%;
-}
-
-.post .img-container.wide img {
-    width: 100%;
 }
 
 .post .bottom-bar {
@@ -167,10 +177,20 @@ main {
     text-align: right;
 }
 
-/*--------------------------Replies-------------------------------*/
-#replies {
+/*--------------------Modules-------------------------------*/
+#dark-overlay {
     position: fixed;
+    height: 100vh;
+    width: 100%;
     z-index: 2;
+    background-color: black;
+    left: 0;
+    top: 0;
+    opacity: 50%;
+}
+.module {
+    position: fixed;
+    z-index: 3;
     background-color: white;
     height: 94vh;
     width: 94%;
@@ -185,6 +205,21 @@ main {
     border-radius: 0.5rem;
 }
 
+
+.module button {
+    border: none;
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+    background-color: transparent;
+}
+
+.module button:hover {
+    background-color: lightgray;
+}
+
+
+/*-------------------Replies--------------------*/
+
 #replies .header {
     flex-shrink: 0;
     display: flex;
@@ -196,17 +231,6 @@ main {
 
 #replies h3 .icon {
     padding: 0 0.5rem;
-}
-
-#replies button {
-    border: none;
-    font-size: 1.5rem;
-    padding: 0 0.5rem;
-    background-color: transparent;
-}
-
-#replies button:hover {
-    background-color: lightgray;
 }
 
 #comments-container {
@@ -233,7 +257,6 @@ main {
     width: 3rem;
     border-radius: 50%;
     border: 1px solid gray;
-    overflow: hidden;
     flex-shrink: 0;
 }
 
@@ -261,6 +284,26 @@ main {
 .reply .right-pane .reply-body {
     margin-top: 0;
 }
+
+/*---------------------Picture-----------------------*/
+#picture {
+    padding: 1rem;
+}
+
+#picture .header {
+    flex-shrink: 0;
+}
+
+#picture button {
+    float: right;
+}
+
+#picture .img-container {
+    flex-grow: 1;
+}
+
+
+
 
 
 

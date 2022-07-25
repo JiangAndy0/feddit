@@ -24,7 +24,7 @@ export const Replies = ({ activePost, setShowingReplies }) => {
     }
 
     return (
-        <div id='replies'>
+        <div id='replies' className='module'>
             <div className='header'>
                 <h3><FontAwesomeIcon icon={faMessage} className='icon'/>{activePost.numComments} comments</h3>
                 <button onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
