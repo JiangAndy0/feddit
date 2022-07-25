@@ -17,6 +17,15 @@ function App() {
   const [showingReplies, setShowingReplies] = useState(false);
   const [showingImage, setShowingImage] = useState(false);
   
+  //disable scrolling in the body when showing replies or picture
+  useEffect( () => {
+    if (showingReplies || showingImage) {
+      document.body.style.overflow = 'hidden';
+    } else { //reset
+      document.body.style.overflow = 'scroll';
+    }
+  }, [showingReplies, showingImage]);
+
   //fetch new posts from Reddit when feed changes
   useEffect(() => { 
     async function fetchData() {
