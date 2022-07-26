@@ -26,11 +26,23 @@ function App() {
     }
   }, [showingReplies, showingImage]);
 
-  //fetch new posts from Reddit when feed changes
+  //fetch new posts from Reddit and change background color when feed changes
   useEffect(() => { 
     async function fetchData() {
       const posts = await getPostsForFeed(feed);
       setPosts(posts);
+
+      const buttonHighlighter = document.getElementById('button-highlighter');
+
+      //change feed background color and feed button highlighter positon
+      if (feed === 'dinner'){
+        document.body.style.backgroundColor = 'hsl(20, 75%, 70%)';
+        buttonHighlighter.style.left = '0';
+      } else if (feed === 'dessert'){ 
+        document.body.style.backgroundColor = 'hsl(170, 75%, 70%)';
+        buttonHighlighter.style.left = '50%'
+      }
+
     }
     fetchData();
   }, [feed]);
@@ -48,6 +60,7 @@ function App() {
         <div id="nav-elements">
           <h1><FontAwesomeIcon icon={faFaceGrinTongue}/>FEDDIT</h1>
           <div id="feed-buttons">
+            <div id="button-highlighter"></div>
             <button onClick={ () => {setFeed('dinner')}} >
               <FontAwesomeIcon icon={faBurger} />
             </button>
@@ -81,7 +94,7 @@ function App() {
           setShowingImage={setShowingImage}
         />
       }
-      <Feed 
+      <Feed
         posts={posts} 
         query={query}
         setActivePost={setActivePost}
