@@ -40,7 +40,7 @@ function App() {
         buttonHighlighter.style.left = '0';
       } else if (feed === 'dessert'){ 
         document.body.style.backgroundColor = 'hsl(170, 75%, 70%)';
-        buttonHighlighter.style.left = '50%'
+        buttonHighlighter.style.left = '50%';
       }
 
     }
@@ -58,7 +58,7 @@ function App() {
     <div className="App">
       <nav>
         <div id="nav-elements">
-          <h1><FontAwesomeIcon icon={faFaceGrinTongue}/>FEDDIT</h1>
+          <h1><FontAwesomeIcon icon={faFaceGrinTongue} className='icon'/>FEDDIT</h1>
           <div id="feed-buttons">
             <div id="button-highlighter"></div>
             <button onClick={ () => {setFeed('dinner')}} >

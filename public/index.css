@@ -83,6 +83,10 @@ nav {
     width: 15rem; /*to make sure buttons are centered*/
 }
 
+#nav-elements h1 .icon {
+    padding-right: 5px;
+}
+
 #feed-buttons {
     position: relative;
     height: 100%;
@@ -133,6 +137,7 @@ nav {
     border: none;
     outline: 3px solid lightgray;
     border-radius: 2rem;
+    font-size: 16px;
 }
 
 #input-container input:focus {
@@ -164,11 +169,12 @@ main {
 
 .post .img-container {
     width: 100%;
+    cursor: pointer;
 }
 
 .post .img-container.tall {
     aspect-ratio: 1 / 1;
-    background-color: lightgray;
+    background-color: hsl(0, 0%, 95%);
 }
 
 .post .bottom-bar {
@@ -187,6 +193,15 @@ main {
 .post button:hover {
     background-color: lightgray;
 }
+
+.post button:disabled {
+    cursor: default;
+}
+
+.post button:disabled:hover {
+    background-color: transparent;
+}
+
 .post a {
     flex-grow: 1;
     text-align: right;
@@ -243,6 +258,7 @@ main {
     justify-content: space-between;
     padding: 1rem;
     background-color: white;
+    box-shadow: 0px 1px 1px 2px rgba(0,0,0,20%);
 }
 
 #replies h3 .icon {
