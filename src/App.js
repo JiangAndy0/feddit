@@ -43,6 +43,8 @@ function App() {
         buttonHighlighter.style.left = '50%';
       }
 
+      //scroll to the top
+      window.scrollTo(0, 0);
     }
     fetchData();
   }, [feed]);
