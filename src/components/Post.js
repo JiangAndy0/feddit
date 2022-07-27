@@ -19,11 +19,11 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
         setShowingImage( true );
     }
 
-    //determine if the post's image is a portrait photo
+    //determine if the post's image is taller than 4 : 5
     const handleImageLoad = ({ target:img }) => {
         const {offsetHeight, offsetWidth} = img;
         console.log(offsetHeight);
-        if (offsetHeight > offsetWidth) {
+        if (offsetHeight > offsetWidth * 1.25) {
             setHasTallImage(true);
         }
     }
@@ -32,7 +32,7 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
         <div className="post">
             <p className='signature'>{post.timeAgo} ago by {post.author}</p>
             <h2>{post.title}</h2>
-            <div className={hasTallImage ? 'img-container tall' : 'img-container wide'}>
+            <div className={hasTallImage ? 'img-container tall' : 'img-container'}>
                 <img 
                     src={post.imgPreviewURL} 
                     onClick={handleImageClick}

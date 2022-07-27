@@ -34,23 +34,16 @@ h3 {
 .img-container {
     display: flex;
     overflow: hidden;
-}
-
-.img-container.tall {
+    align-items: center;
     justify-content: center;
 }
 
-.img-container.wide {
-    align-items: center;
-}
-
-.img-container.tall img {
-    height: 100%;
-}
-
-.img-container.wide img {
+.img-container img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
+
 
 /*---------------------Navbar-------------------------*/
 
@@ -170,11 +163,12 @@ main {
 .post .img-container {
     width: 100%;
     cursor: pointer;
+    background-color: hsl(0,0%, 90%);
+    max-height: 70vh;
 }
 
 .post .img-container.tall {
-    aspect-ratio: 1 / 1;
-    background-color: hsl(0, 0%, 95%);
+    aspect-ratio: 4 / 5;
 }
 
 .post .bottom-bar {
@@ -205,6 +199,14 @@ main {
 .post a {
     flex-grow: 1;
     text-align: right;
+}
+
+@media screen and (max-width: 768px){
+    main {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 1rem;
+    }
 }
 
 /*--------------------Modules-------------------------------*/
@@ -247,6 +249,14 @@ main {
 
 .module button:hover {
     background-color: lightgray;
+}
+
+@media screen and (max-width: 768px){
+    .module {
+        height: 100vh;
+        width: 100%;
+    }
+
 }
 
 
@@ -305,9 +315,6 @@ main {
     margin: 1rem 0;
 }
 
-.reply .right-pane {
-    flex-grow: 1;
-}
 
 .reply .right-pane .signature-container {
     display: flex;
@@ -317,6 +324,12 @@ main {
 
 .reply .right-pane .reply-body {
     margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+    #comments-container {
+        margin: 0 1rem;
+    }
 }
 
 /*---------------------Picture-----------------------*/
@@ -334,6 +347,16 @@ main {
 
 #picture .img-container {
     flex-grow: 1;
+}
+
+@media screen and (max-width: 768px){
+    #picture {
+        padding: 0;
+    }
+
+    #picture .header {
+        padding: 1rem;
+    }
 }
 
 
