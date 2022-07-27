@@ -61,14 +61,16 @@ function App() {
       <nav>
         <div id="nav-elements">
           <h1><FontAwesomeIcon icon={faFaceGrinTongue} className='icon'/>FEDDIT</h1>
-          <div id="feed-buttons">
-            <div id="button-highlighter"></div>
-            <button onClick={ () => {setFeed('dinner')}} >
-              <FontAwesomeIcon icon={faBurger} />
-            </button>
-            <button onClick={ () => {setFeed('dessert')}} >
-              <FontAwesomeIcon icon={faIceCream} />
-            </button>
+          <div id="feed-buttons-container">
+            <div id="feed-buttons">
+              <div id="button-highlighter"></div>
+              <button onClick={ () => {setFeed('dinner')}} >
+                <FontAwesomeIcon icon={faBurger} />
+              </button>
+              <button onClick={ () => {setFeed('dessert')}} >
+                <FontAwesomeIcon icon={faIceCream} />
+              </button>
+            </div>
           </div>
           <div id='input-container'>
             <FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/>
