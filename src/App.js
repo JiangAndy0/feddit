@@ -55,20 +55,19 @@ function App() {
     setQuery(e.target.value);
   }
 
-
   return (
     <div className="App">
       <nav>
         <div id="nav-elements">
-          <h1><FontAwesomeIcon icon={faFaceGrinTongue} className='icon'/>FEDDIT</h1>
+          <h1><FontAwesomeIcon icon={faFaceGrinTongue} className={'icon ' + feed}/>FEDDIT</h1>
           <div id="feed-buttons-container">
             <div id="feed-buttons">
               <div id="button-highlighter"></div>
               <button onClick={ () => {setFeed('dinner')}} >
-                <FontAwesomeIcon icon={faBurger} />
+                <FontAwesomeIcon icon={faBurger} id='dinner-icon' className={feed} />
               </button>
               <button onClick={ () => {setFeed('dessert')}} >
-                <FontAwesomeIcon icon={faIceCream} />
+                <FontAwesomeIcon icon={faIceCream} id='dessert-icon' className={feed} />
               </button>
             </div>
           </div>

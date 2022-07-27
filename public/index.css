@@ -45,6 +45,50 @@ h3 {
 }
 
 
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid black;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: black transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  
+
+
 /*---------------------Navbar-------------------------*/
 
 nav {
@@ -77,7 +121,16 @@ nav {
 }
 
 #nav-elements h1 .icon {
+    transition: color 0.4s ease-out;
     padding-right: 5px;
+}
+
+#nav-elements h1 .icon.dinner {
+    color: hsl(20, 75%, 50%);
+}
+
+#nav-elements h1 .icon.dessert {
+    color: hsl(170, 75%, 50%);
 }
 
 #feed-buttons {
@@ -88,8 +141,8 @@ nav {
     border: 3px solid black;
     overflow: hidden;
     background-color: lightgray;
-
 }
+
 #feed-buttons button {
     position: relative;
     height: 100%;
@@ -99,6 +152,26 @@ nav {
     background-color: transparent;
     cursor: pointer;
     font-size: 2rem;
+}
+
+#dinner-icon, #dessert-icon {
+    transition: color 0.4s ease-out;
+}
+
+#dinner-icon.dinner {
+    color:hsl(20, 75%, 50%);
+}
+
+#dessert-icon.dinner {
+    color: black;
+}
+
+#dinner-icon.dessert {
+    color: black;
+}
+
+#dessert-icon.dessert {
+    color:hsl(170, 75%, 50%);
 }
 
 #button-highlighter {
@@ -139,7 +212,7 @@ nav {
 
 @media screen and (max-width: 768px){ /* feed buttons move to bottom of screen*/
     nav {
-        height: auto;
+        height: 5rem;
     }
 
     #nav-elements {
@@ -172,6 +245,7 @@ nav {
     nav {
         position: sticky;
         top: -3.9rem;
+        height: auto;
     }
 
     #nav-elements {
@@ -341,6 +415,14 @@ main {
     padding-top: 1rem;
     margin: 0 4rem;
 }
+
+#comments-container.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
 
 .reply {
     display: flex;
