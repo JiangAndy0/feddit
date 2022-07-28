@@ -379,6 +379,7 @@ main {
     font-size: 1.5rem;
     padding: 0 0.5rem;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .module button:hover {
@@ -396,7 +397,7 @@ main {
 
 /*-------------------Replies--------------------*/
 
-#replies .header {
+#replies .top-bar {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -406,14 +407,14 @@ main {
     box-shadow: 0px 1px 1px 2px rgba(0,0,0,20%);
 }
 
-#replies h3 .icon {
+#replies .top-bar h3 .icon {
     padding: 0 0.5rem;
 }
 
 #comments-container {
     flex-grow: 1;
     overflow: scroll;
-    padding-top: 1rem;
+    padding: 0.5rem;
     margin: 0 4rem;
 }
 
@@ -424,20 +425,14 @@ main {
     padding: 0;
 }
 
-
-.reply {
+.reply .header {
     display: flex;
-    column-gap: 0.5rem;
-}
-
-.reply .left-pane {
-    flex-basis: 2rem;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    column-gap: 0.5rem;
+    margin: 0.5rem 0;
 }
 
-.reply .img-container {
+.reply .header .img-container {
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
@@ -445,26 +440,33 @@ main {
     flex-shrink: 0;
 }
 
-.reply .img-container img {
+.reply .header .img-container img {
     max-width: 100%;
 }
 
-.reply .left-pane .h-line {
-    width: 2px;
-    height: 100%;
-    background-color: lightgray;
-    margin: 1rem 0;
+.reply .header .signature {
+    color: gray;
 }
 
 
-.reply .right-pane .signature-container {
+.reply .reply-body, .reply .stat {
+    margin: 0.5rem 0;
+}
+
+.reply .inner-replies-container {
+    padding-left: 2px;
+    column-gap: 0.5rem;
     display: flex;
-    height: 2rem;
-    align-items: center;
 }
 
-.reply .right-pane .reply-body {
-    margin-top: 0;
+.reply .inner-replies-container .v-line {
+    width: 2px;
+    background-color: lightgray;
+}
+
+.reply .inner-replies-container .inner-replies {
+    flex-grow: 1;
+    max-width: 100%; /*make sure all of a reply can be viewed without scrolling */
 }
 
 @media screen and (max-width: 768px) {
