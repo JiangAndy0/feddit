@@ -29,9 +29,10 @@ function App() {
   //fetch new posts from Reddit and change background color when feed changes
   useEffect(() => { 
     async function fetchData() {
-      const posts = await getPostsForFeed(feed);
-      setPosts(posts);
-
+      setQuery(''); //reset query 
+      setPosts([]) //reset posts
+      window.scrollTo(0, 0) //scroll to top of the page
+      
       const buttonHighlighter = document.getElementById('button-highlighter');
 
       //change feed background color and feed button highlighter positon
@@ -43,12 +44,19 @@ function App() {
         buttonHighlighter.style.left = '50%';
       }
 
-      //scroll to the top
-      window.scrollTo(0, 0);
+      const posts = await getPostsForFeed(feed);
+      setPosts(posts);
+
+
+
     }
     fetchData();
   }, [feed]);
 
+  //scroll to the top of the page when search query changes
+  useEffect( () => {
+    window.scrollTo(0, 0);
+  }, [query])
 
   //handle when the search query changes
   const handleChange = ( e ) => {
