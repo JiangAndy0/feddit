@@ -126,11 +126,11 @@ nav {
 }
 
 #nav-elements h1 .icon.dinner {
-    color: hsl(20, 75%, 50%);
+    color: hsl(20, 50%, 50%);
 }
 
 #nav-elements h1 .icon.dessert {
-    color: hsl(170, 75%, 50%);
+    color: hsl(170, 50%, 50%);
 }
 
 #feed-buttons {
@@ -159,7 +159,7 @@ nav {
 }
 
 #dinner-icon.dinner {
-    color:hsl(20, 75%, 50%);
+    color:hsl(20, 50%, 50%);
 }
 
 #dessert-icon.dinner {
@@ -171,7 +171,7 @@ nav {
 }
 
 #dessert-icon.dessert {
-    color:hsl(170, 75%, 50%);
+    color:hsl(170, 50%, 50%);
 }
 
 #button-highlighter {
@@ -277,7 +277,7 @@ main {
 
 
 .post {
-    padding: 1rem;
+    padding: 1rem 1rem 0;
     margin: 1rem 0;
     border-radius: 0.5rem;
     background-color: white;
@@ -430,16 +430,15 @@ main {
 }
 
 .reply .left-pane {
-    flex-basis: 3rem;
+    flex-basis: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .reply .img-container {
-    display: block;
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     border: 1px solid gray;
     flex-shrink: 0;
@@ -459,7 +458,7 @@ main {
 
 .reply .right-pane .signature-container {
     display: flex;
-    height: 3rem;
+    height: 2rem;
     align-items: center;
 }
 
@@ -471,6 +470,7 @@ main {
     #comments-container {
         margin: 0 1rem;
     }
+    
 }
 
 /*---------------------Picture-----------------------*/
