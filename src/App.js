@@ -47,8 +47,6 @@ function App() {
       const posts = await getPostsForFeed(feed);
       setPosts(posts);
 
-
-
     }
     fetchData();
   }, [feed]);
