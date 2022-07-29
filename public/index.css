@@ -276,6 +276,12 @@ main {
     padding-bottom: 1rem;
 }
 
+main.loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 
 .post {
     padding: 1rem 1rem 0;
