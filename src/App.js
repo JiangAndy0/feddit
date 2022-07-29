@@ -31,7 +31,7 @@ function App() {
     async function fetchData() {
       setQuery(''); //reset query 
       setPosts([]) //reset posts
-      window.scrollTo(0, 0) //scroll to top of the page
+      smoothScrollUp() //scroll to top of the page
       
       const buttonHighlighter = document.getElementById('button-highlighter');
 
@@ -61,6 +61,11 @@ function App() {
     setQuery(e.target.value);
   }
 
+  //smooth scroll to the top of the page
+  const smoothScrollUp = () => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }
+
   return (
     <div className="App">
       <nav>
@@ -69,10 +74,20 @@ function App() {
           <div id="feed-buttons-container">
             <div id="feed-buttons">
               <div id="button-highlighter"></div>
-              <button onClick={ () => {setFeed('dinner')}} >
+              <button onClick={ 
+                () => {
+                  setFeed('dinner');
+                  smoothScrollUp();
+                }
+              }>
                 <FontAwesomeIcon icon={faBurger} id='dinner-icon' className={feed} />
               </button>
-              <button onClick={ () => {setFeed('dessert')}} >
+              <button onClick={ 
+                () => {
+                  setFeed('dessert');
+                  smoothScrollUp();
+                }
+              }>
                 <FontAwesomeIcon icon={faIceCream} id='dessert-icon' className={feed} />
               </button>
             </div>

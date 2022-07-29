@@ -22,7 +22,6 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
     //determine if the post's image is taller than 4 : 5
     const handleImageLoad = ({ target:img }) => {
         const {offsetHeight, offsetWidth} = img;
-        console.log(offsetHeight);
         if (offsetHeight > offsetWidth * 1.25) {
             setHasTallImage(true);
         }

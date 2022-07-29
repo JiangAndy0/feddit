@@ -34,7 +34,7 @@ export const Replies = ({ activePost, setShowingReplies }) => {
                 <button onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
             </div>
             <div id='comments-container' className={isLoading ? 'loading' : ''}>
-                { isLoading && <div class="lds-ring"><div></div><div></div><div></div><div></div></div>}
+                { isLoading && <div className="lds-ring"><div></div><div></div><div></div><div></div></div>}
                 {replies.map( (reply, index) => <Reply reply={reply} key={reply.author + index}/> )}
             </div>
 
