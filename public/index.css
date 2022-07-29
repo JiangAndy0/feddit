@@ -379,6 +379,9 @@ main.loading {
     border-radius: 0.5rem;
 }
 
+.module.hidden {
+    display: none;
+}
 
 .module button {
     border: none;
@@ -402,7 +405,6 @@ main.loading {
 
 
 /*-------------------Replies--------------------*/
-
 #replies .top-bar {
     flex-shrink: 0;
     display: flex;

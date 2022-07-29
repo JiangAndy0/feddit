@@ -11,8 +11,8 @@ import { Picture } from './components/Picture.js';
 function App() {
   const [feed, setFeed] = useState('dinner');
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState('');
-
   const [activePost, setActivePost] = useState({});
   const [showingReplies, setShowingReplies] = useState(false);
   const [showingImage, setShowingImage] = useState(false);
@@ -44,7 +44,9 @@ function App() {
         buttonHighlighter.style.left = '50%';
       }
 
+      setIsLoading(true);//notify App that posts are loading
       const posts = await getPostsForFeed(feed);
+      setIsLoading(false);//notify App that posts are done loading
       setPosts(posts);
 
     }
@@ -103,23 +105,25 @@ function App() {
           </div>
         </div>
       </nav>
-      {showingReplies && 
-        <Replies 
-          activePost={activePost}
-          setShowingReplies={setShowingReplies}
-        />
-      }
+      
+      <Replies
+        activePost={activePost}
+        setShowingReplies={setShowingReplies}
+        className={'module' + (showingReplies ? '' : ' hidden')}
+      />
+      
       {(showingReplies || showingImage) && 
         <div id='dark-overlay'></div>
       }
-      {showingImage &&
-        <Picture
-          activePost={activePost}
-          setShowingImage={setShowingImage}
-        />
-      }
+      <Picture
+        activePost={activePost}
+        setShowingImage={setShowingImage}
+        className={'module' + (showingImage ? '' : ' hidden')}
+      />
+      
       <Feed
         posts={posts} 
+        isLoading={isLoading}
         query={query}
         setActivePost={setActivePost}
         setShowingReplies={setShowingReplies}
