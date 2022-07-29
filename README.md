@@ -2,6 +2,7 @@
 
 ## Description
 Feddit is a minimalistic web app that is all about delicious food. See Reddit posts of meals or desserts, whatever your mood is. Feddit is built using HTML, CSS, and Javascript with the help of React, and is my first personal project that communicates with a third party API.
+![image info](./feddit-screenshot.png)
 
 ## Features
  * **Responsive:** Optimized for devices as small as the 4.7" iPhone SE. Images are scaled to be easy to view for any screen size.
