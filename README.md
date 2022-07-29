@@ -1,4 +1,20 @@
-# Project still in progress
+# Feddit
+
+## Description
+Feddit is a minimalistic web app that is all about delicious food. See Reddit posts of meals or desserts, whatever your mood is. Feddit is built using HTML, CSS, and Javascript with the help of React, and is my first personal project that communicates with a third party API.
+
+## Features
+ * **Responsive:** Optimized for devices as small as the 4.7" iPhone SE. Images are scaled to be easy to view for any screen size.
+ * **Easy to use:** Click on the feed buttons to easily switch categories. A persistent search bar allows you to search for a food item whenever you want. Need to go to the top? Just tap on the feed buttons.
+ * **Displays the essentials:** See a Reddit post's score and comments right from Feddit. Simply tap on any image, and you'll see its full resolution version pop up.
+
+## Possible Future Work
+* Allow upvoting/downvoting directly from Feddit
+* Have the ability to fetch more posts from Feddit when a user scrolls to the very bottom.
+* Format comments that have markdown so that they look better
+* Load comments in chunks at a time/ in the background so that it doesn't take forever to view comments
+* Have some form of comment control
+* Get posts from more than two reddit communities
 
 # Getting Started with Create React App
 
