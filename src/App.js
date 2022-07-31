@@ -76,7 +76,7 @@ function App() {
           <div id="feed-buttons-container">
             <div id="feed-buttons">
               <div id="button-highlighter"></div>
-              <button onClick={ 
+              <button aria-label="Dinner Feed" onClick={ 
                 () => {
                   setFeed('dinner');
                   smoothScrollUp();
@@ -84,7 +84,7 @@ function App() {
               }>
                 <FontAwesomeIcon icon={faBurger} id='dinner-icon' className={feed} />
               </button>
-              <button onClick={ 
+              <button aria-label="Dessert Feed" onClick={ 
                 () => {
                   setFeed('dessert');
                   smoothScrollUp();

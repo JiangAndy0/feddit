@@ -42,7 +42,11 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
                 <span className='stat'>
                     <FontAwesomeIcon icon={faArrowUp}/> {formatNum(post.score)} <FontAwesomeIcon icon={faArrowDown}/>
                 </span>
-                <button onClick={handleCommentClick} className='stat' disabled={! post.numComments}>
+                <button 
+                    aria-label="See Comments"
+                    onClick={handleCommentClick} 
+                    className='stat' 
+                    disabled={! post.numComments}>
                     <FontAwesomeIcon icon={faMessage} /> {post.numComments}
                 </button>
                 <a href={post.url}>See on Reddit</a>

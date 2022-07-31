@@ -32,7 +32,7 @@ export const Replies = ({ activePost, setShowingReplies, className }) => {
         <div id='replies' className={className}>
             <div className='top-bar'>
                 <h3><FontAwesomeIcon icon={faMessage} className='icon'/>{activePost.numComments} comments</h3>
-                <button onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
+                <button aria-label="Hide Replies" onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
             </div>
             <div id='comments-container' className={isLoading ? 'loading' : ''}>
                 { isLoading && <div className="lds-ring"><div></div><div></div><div></div><div></div></div>}

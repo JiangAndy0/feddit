@@ -12,7 +12,7 @@ export const Picture = ({activePost, setShowingImage, className}) => {
     return (
         <div id='picture' className={className}>
             <div className='header'>
-                <button onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
+                <button aria-label="Hide Picture" onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
             </div>
             <div className='img-container'>
                 <img src={activePost.imgURL}/>
