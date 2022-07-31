@@ -15,7 +15,7 @@ export const Picture = ({activePost, setShowingImage, className}) => {
                 <button aria-label="Hide Picture" onClick={handleClick}><FontAwesomeIcon icon={faXmark} /></button>
             </div>
             <div className='img-container'>
-                <img src={activePost.imgURL}/>
+                <img src={activePost.imgURL} alt="food related to the post"/>
             </div>
         </div>
     );

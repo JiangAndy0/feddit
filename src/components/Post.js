@@ -36,6 +36,7 @@ export const Post = ({ post, setActivePost, setShowingReplies, setShowingImage})
                     src={post.imgPreviewURL} 
                     onClick={handleImageClick}
                     onLoad={handleImageLoad}
+                    alt='food related to the post'
                 />
             </div>
             <div className='bottom-bar'>

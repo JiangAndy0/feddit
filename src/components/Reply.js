@@ -6,7 +6,7 @@ export const Reply = ({ reply }) => {
         <div className="reply">
             <div className='header'>
                 <div className="img-container">
-                    <img src={reply.authorImg} />
+                    <img src={reply.authorImg} alt={`profile picture for ${reply.author}`}/>
                 </div>
                 <p className='signature'>{reply.author} {reply.timeAgo} ago</p>
             </div>
